@@ -20,6 +20,8 @@
 #include "mesh.h"
 
 #include "RayTracer.h"
+#include "Utils.h"
+
 using namespace cmesh4;
 
 using LiteMath::float2;
@@ -41,16 +43,32 @@ int main(int argc, char **args)
     // Pixel buffer (RGBA format)
     std::vector<uint32_t> pixels(SCREEN_WIDTH * SCREEN_HEIGHT, 0xFFFFFFFF); // Initialize with white pixels
 
-    auto red_sphere = Sphere({0, 0, 3}, 1, {1, 0, 0});
-    auto green_sphere = Sphere({4, 1, 5}, 2, {0, 1, 0});
-    auto blue_sphere = Sphere({-3, 2, 6}, 3, {0, 0, 1});
+
     auto plane = Plane(0, 1, 0, -1, {1, 1, 1});
-    HittableList hit_list({
-        &red_sphere,
-        &green_sphere,
-        &blue_sphere,
-        &plane
-    });
+
+    SimpleMesh mesh = LoadMeshFromObj("res/cube.obj");
+
+    HittableList hit_list( { &plane });
+
+    float3 mesh_color = {1, 1, 0};
+
+    std::vector<Triangle> mesh_tris;
+    mesh_tris.reserve(mesh.TrianglesNum());
+    for (int i = 0; i < mesh.IndicesNum(); i += SimpleMesh::POINTS_IN_TRIANGLE) {
+
+        float3 a = to_float3(mesh.vPos4f[mesh.indices[i]]);
+        float3 b = to_float3(mesh.vPos4f[mesh.indices[i + 1]]);
+        float3 c = to_float3(mesh.vPos4f[mesh.indices[i + 2]]);
+
+        float3 a_normal = to_float3(mesh.vNorm4f[mesh.indices[i]]);
+        float3 b_normal = to_float3(mesh.vNorm4f[mesh.indices[i + 1]]);
+        float3 c_normal = to_float3(mesh.vNorm4f[mesh.indices[i + 2]]);
+
+        mesh_tris.push_back({a, b, c, a_normal, b_normal, c_normal, mesh_color});
+        hit_list.add(&mesh_tris[mesh_tris.size() - 1]);
+
+    }
+
     RayTracer ray_tracer{pixels, hit_list, SCREEN_WIDTH, SCREEN_HEIGHT};
 
 
@@ -109,6 +127,13 @@ int main(int argc, char **args)
     unsigned long long last_update_time = std::chrono::duration_cast<std::chrono::nanoseconds>(now.time_since_epoch()).count();
     unsigned long long start_time = last_update_time;
 
+    float r = 3.0f;
+    float phi = 0;
+    float theta = 0;
+    constexpr float camera_rot_speed = 0.01;
+    constexpr float camera_move_speed = 0.05;
+    ray_tracer.set_camera_pos({r * sinf(phi) * cosf(theta), r * sinf(theta), -r * cosf(phi) * cosf(theta)});
+
     // Main loop
     while (running)
     {
@@ -126,13 +151,33 @@ int main(int argc, char **args)
                 // test keycode
                 switch (ev.key.keysym.sym)
                 {
-                //ESC to exit
-                case SDLK_ESCAPE:
-                    running = false;
-                    break;
-                    // etc
+                    case SDLK_UP:
+                        theta += camera_rot_speed;
+                        break;
+                    case SDLK_DOWN:
+                        theta -= camera_rot_speed;
+                        break;
+                    case SDLK_LEFT:
+                        phi -= camera_rot_speed;
+                        break;
+                    case SDLK_RIGHT:
+                        phi += camera_rot_speed;
+                        break;
+                    case SDLK_w:
+                        r -= camera_move_speed;
+                        break;
+                    case SDLK_s:
+                        r += camera_move_speed;
+                        break;
+                    //ESC to exit
+                    case SDLK_ESCAPE:
+                        running = false;
+                        break;
+                        // etc
                 }
+                ray_tracer.set_camera_pos({r * sinf(phi) * cosf(theta), r * sinf(theta), -r * cosf(phi) * cosf(theta)});
                 break;
+
             }
         }
 

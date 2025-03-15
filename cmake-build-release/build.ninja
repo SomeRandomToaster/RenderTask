@@ -52,7 +52,7 @@ build cmake_object_order_depends_target_render: phony || .
 build CMakeFiles/render.dir/src/main.cpp.o: CXX_COMPILER__render_unscanned_Release /home/leo/Prog/Rendering/SdfTaskTemplate/src/main.cpp || cmake_object_order_depends_target_render
   DEFINES = -DUSE_STB_IMAGE
   DEP_FILE = CMakeFiles/render.dir/src/main.cpp.o.d
-  FLAGS = -O2 -fdiagnostics-color=always
+  FLAGS = -O3 -fdiagnostics-color=always
   INCLUDES = -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib/LiteMath/external -isystem /usr/include/SDL2
   OBJECT_DIR = CMakeFiles/render.dir
   OBJECT_FILE_DIR = CMakeFiles/render.dir/src
@@ -60,7 +60,7 @@ build CMakeFiles/render.dir/src/main.cpp.o: CXX_COMPILER__render_unscanned_Relea
 build CMakeFiles/render.dir/src/mesh.cpp.o: CXX_COMPILER__render_unscanned_Release /home/leo/Prog/Rendering/SdfTaskTemplate/src/mesh.cpp || cmake_object_order_depends_target_render
   DEFINES = -DUSE_STB_IMAGE
   DEP_FILE = CMakeFiles/render.dir/src/mesh.cpp.o.d
-  FLAGS = -O2 -fdiagnostics-color=always
+  FLAGS = -O3 -fdiagnostics-color=always
   INCLUDES = -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib/LiteMath/external -isystem /usr/include/SDL2
   OBJECT_DIR = CMakeFiles/render.dir
   OBJECT_FILE_DIR = CMakeFiles/render.dir/src
@@ -68,7 +68,7 @@ build CMakeFiles/render.dir/src/mesh.cpp.o: CXX_COMPILER__render_unscanned_Relea
 build CMakeFiles/render.dir/src/RayTracer.cpp.o: CXX_COMPILER__render_unscanned_Release /home/leo/Prog/Rendering/SdfTaskTemplate/src/RayTracer.cpp || cmake_object_order_depends_target_render
   DEFINES = -DUSE_STB_IMAGE
   DEP_FILE = CMakeFiles/render.dir/src/RayTracer.cpp.o.d
-  FLAGS = -O2 -fdiagnostics-color=always
+  FLAGS = -O3 -fdiagnostics-color=always
   INCLUDES = -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib/LiteMath/external -isystem /usr/include/SDL2
   OBJECT_DIR = CMakeFiles/render.dir
   OBJECT_FILE_DIR = CMakeFiles/render.dir/src
@@ -76,7 +76,7 @@ build CMakeFiles/render.dir/src/RayTracer.cpp.o: CXX_COMPILER__render_unscanned_
 build CMakeFiles/render.dir/src/Hittable.cpp.o: CXX_COMPILER__render_unscanned_Release /home/leo/Prog/Rendering/SdfTaskTemplate/src/Hittable.cpp || cmake_object_order_depends_target_render
   DEFINES = -DUSE_STB_IMAGE
   DEP_FILE = CMakeFiles/render.dir/src/Hittable.cpp.o.d
-  FLAGS = -O2 -fdiagnostics-color=always
+  FLAGS = -O3 -fdiagnostics-color=always
   INCLUDES = -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib/LiteMath/external -isystem /usr/include/SDL2
   OBJECT_DIR = CMakeFiles/render.dir
   OBJECT_FILE_DIR = CMakeFiles/render.dir/src
@@ -84,7 +84,7 @@ build CMakeFiles/render.dir/src/Hittable.cpp.o: CXX_COMPILER__render_unscanned_R
 build CMakeFiles/render.dir/lib/LiteMath/Image2d.cpp.o: CXX_COMPILER__render_unscanned_Release /home/leo/Prog/Rendering/SdfTaskTemplate/lib/LiteMath/Image2d.cpp || cmake_object_order_depends_target_render
   DEFINES = -DUSE_STB_IMAGE
   DEP_FILE = CMakeFiles/render.dir/lib/LiteMath/Image2d.cpp.o.d
-  FLAGS = -O2 -fdiagnostics-color=always
+  FLAGS = -O3 -fdiagnostics-color=always
   INCLUDES = -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib/LiteMath/external -isystem /usr/include/SDL2
   OBJECT_DIR = CMakeFiles/render.dir
   OBJECT_FILE_DIR = CMakeFiles/render.dir/lib/LiteMath
@@ -98,7 +98,7 @@ build CMakeFiles/render.dir/lib/LiteMath/Image2d.cpp.o: CXX_COMPILER__render_uns
 # Link the executable /home/leo/Prog/Rendering/SdfTaskTemplate/render
 
 build /home/leo/Prog/Rendering/SdfTaskTemplate/render: CXX_EXECUTABLE_LINKER__render_Release CMakeFiles/render.dir/src/main.cpp.o CMakeFiles/render.dir/src/mesh.cpp.o CMakeFiles/render.dir/src/RayTracer.cpp.o CMakeFiles/render.dir/src/Hittable.cpp.o CMakeFiles/render.dir/lib/LiteMath/Image2d.cpp.o | /usr/lib/x86_64-linux-gnu/libSDL2.so
-  FLAGS = -O2
+  FLAGS = -O3
   LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libSDL2.so
   OBJECT_DIR = CMakeFiles/render.dir
   POST_BUILD = :
