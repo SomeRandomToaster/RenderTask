@@ -17,10 +17,10 @@
 #include <chrono>
 #include <SDL.h>
 
+#include "BVHTree.h"
 #include "mesh.h"
 
 #include "RayTracer.h"
-#include "Utils.h"
 
 using namespace cmesh4;
 
@@ -37,8 +37,17 @@ using LiteMath::uint4;
 
 int main(int argc, char **args)
 {
-    const int SCREEN_WIDTH = 1280;
-    const int SCREEN_HEIGHT = 720;
+    const int SCREEN_WIDTH = 512;
+    const int SCREEN_HEIGHT = 512;
+
+    constexpr float camera_rot_speed = 0.01;
+    constexpr float camera_move_speed = 0.05;
+    constexpr float light_move_speed = 0.1;
+    constexpr float light_trajectory_radius = 0.75;
+    constexpr float light_height = 1;
+    constexpr float light_intensity = 2;
+    const float3 light_color = {1, 0.85, 0.7};
+    const float3 mesh_color = {1, 0.8, 0.9};
 
     // Pixel buffer (RGBA format)
     std::vector<uint32_t> pixels(SCREEN_WIDTH * SCREEN_HEIGHT, 0xFFFFFFFF); // Initialize with white pixels
@@ -46,11 +55,9 @@ int main(int argc, char **args)
 
     auto plane = Plane(0, 1, 0, -1, {1, 1, 1});
 
-    SimpleMesh mesh = LoadMeshFromObj("res/cube.obj");
+    SimpleMesh mesh = LoadMeshFromObj("res/spot.obj");
 
     HittableList hit_list( { &plane });
-
-    float3 mesh_color = {1, 1, 0};
 
     std::vector<Triangle> mesh_tris;
     mesh_tris.reserve(mesh.TrianglesNum());
@@ -65,12 +72,15 @@ int main(int argc, char **args)
         float3 c_normal = to_float3(mesh.vNorm4f[mesh.indices[i + 2]]);
 
         mesh_tris.push_back({a, b, c, a_normal, b_normal, c_normal, mesh_color});
-        hit_list.add(&mesh_tris[mesh_tris.size() - 1]);
-
     }
+    BVHTree bvh_tree(mesh_tris);
+    std::cout << "Triangles count: " << bvh_tree.count() << std::endl;
+    hit_list.add(&bvh_tree);
 
     RayTracer ray_tracer{pixels, hit_list, SCREEN_WIDTH, SCREEN_HEIGHT};
 
+    ray_tracer.u_light_intensity = light_intensity;
+    ray_tracer.u_light_color = light_color;
 
     // Initialize SDL. SDL_Init will return -1 if it fails.
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
@@ -130,8 +140,7 @@ int main(int argc, char **args)
     float r = 3.0f;
     float phi = 0;
     float theta = 0;
-    constexpr float camera_rot_speed = 0.01;
-    constexpr float camera_move_speed = 0.05;
+
     ray_tracer.set_camera_pos({r * sinf(phi) * cosf(theta), r * sinf(theta), -r * cosf(phi) * cosf(theta)});
 
     // Main loop
@@ -185,7 +194,7 @@ int main(int argc, char **args)
         unsigned long long current_time = std::chrono::duration_cast<std::chrono::nanoseconds>(now.time_since_epoch()).count();
 
         float t = (current_time - start_time) * 1e-9f;
-        ray_tracer.u_light_pos = {10 * cos(t * LiteMath::M_PI), 10, 10* sin(t * LiteMath::M_PI)};
+        ray_tracer.u_light_pos = {light_trajectory_radius * cos(light_move_speed * t * LiteMath::M_PI), light_height, light_trajectory_radius * sin(light_move_speed * t * LiteMath::M_PI)};
         ray_tracer.draw_frame();
 
 

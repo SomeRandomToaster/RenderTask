@@ -14,7 +14,6 @@ private:
     unsigned m_width, m_height;
     float m_viewport_height = 2.0;
     float m_viewport_width;
-    static constexpr float MAX_DIST = 100.f;
 
     std::vector<uint32_t>& m_pixels;
     HittableList m_hit_list;
@@ -32,7 +31,7 @@ public:
     float3 u_background_color{ 0.0, 0.0, 0.0 };
     float3 u_light_pos{ 5, 10, -10 };
     float3 u_light_color{ 1, 1, 1 };
-    float u_light_intensity = 1000.0f;
+    float u_light_intensity = 5.0f;
 public:
     void draw_frame();
     void set_camera_pos(const float3& pos);

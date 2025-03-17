@@ -89,6 +89,30 @@ build CMakeFiles/render.dir/lib/LiteMath/Image2d.cpp.o: CXX_COMPILER__render_uns
   OBJECT_DIR = CMakeFiles/render.dir
   OBJECT_FILE_DIR = CMakeFiles/render.dir/lib/LiteMath
 
+build CMakeFiles/render.dir/src/BVHTree.cpp.o: CXX_COMPILER__render_unscanned_Release /home/leo/Prog/Rendering/SdfTaskTemplate/src/BVHTree.cpp || cmake_object_order_depends_target_render
+  DEFINES = -DUSE_STB_IMAGE
+  DEP_FILE = CMakeFiles/render.dir/src/BVHTree.cpp.o.d
+  FLAGS = -O3 -fdiagnostics-color=always
+  INCLUDES = -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib/LiteMath/external -isystem /usr/include/SDL2
+  OBJECT_DIR = CMakeFiles/render.dir
+  OBJECT_FILE_DIR = CMakeFiles/render.dir/src
+
+build CMakeFiles/render.dir/src/Triangle.cpp.o: CXX_COMPILER__render_unscanned_Release /home/leo/Prog/Rendering/SdfTaskTemplate/src/Triangle.cpp || cmake_object_order_depends_target_render
+  DEFINES = -DUSE_STB_IMAGE
+  DEP_FILE = CMakeFiles/render.dir/src/Triangle.cpp.o.d
+  FLAGS = -O3 -fdiagnostics-color=always
+  INCLUDES = -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib/LiteMath/external -isystem /usr/include/SDL2
+  OBJECT_DIR = CMakeFiles/render.dir
+  OBJECT_FILE_DIR = CMakeFiles/render.dir/src
+
+build CMakeFiles/render.dir/src/Box.cpp.o: CXX_COMPILER__render_unscanned_Release /home/leo/Prog/Rendering/SdfTaskTemplate/src/Box.cpp || cmake_object_order_depends_target_render
+  DEFINES = -DUSE_STB_IMAGE
+  DEP_FILE = CMakeFiles/render.dir/src/Box.cpp.o.d
+  FLAGS = -O3 -fdiagnostics-color=always
+  INCLUDES = -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib -I/home/leo/Prog/Rendering/SdfTaskTemplate/lib/LiteMath/external -isystem /usr/include/SDL2
+  OBJECT_DIR = CMakeFiles/render.dir
+  OBJECT_FILE_DIR = CMakeFiles/render.dir/src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target render
@@ -97,7 +121,7 @@ build CMakeFiles/render.dir/lib/LiteMath/Image2d.cpp.o: CXX_COMPILER__render_uns
 #############################################
 # Link the executable /home/leo/Prog/Rendering/SdfTaskTemplate/render
 
-build /home/leo/Prog/Rendering/SdfTaskTemplate/render: CXX_EXECUTABLE_LINKER__render_Release CMakeFiles/render.dir/src/main.cpp.o CMakeFiles/render.dir/src/mesh.cpp.o CMakeFiles/render.dir/src/RayTracer.cpp.o CMakeFiles/render.dir/src/Hittable.cpp.o CMakeFiles/render.dir/lib/LiteMath/Image2d.cpp.o | /usr/lib/x86_64-linux-gnu/libSDL2.so
+build /home/leo/Prog/Rendering/SdfTaskTemplate/render: CXX_EXECUTABLE_LINKER__render_Release CMakeFiles/render.dir/src/main.cpp.o CMakeFiles/render.dir/src/mesh.cpp.o CMakeFiles/render.dir/src/RayTracer.cpp.o CMakeFiles/render.dir/src/Hittable.cpp.o CMakeFiles/render.dir/lib/LiteMath/Image2d.cpp.o CMakeFiles/render.dir/src/BVHTree.cpp.o CMakeFiles/render.dir/src/Triangle.cpp.o CMakeFiles/render.dir/src/Box.cpp.o | /usr/lib/x86_64-linux-gnu/libSDL2.so
   FLAGS = -O3
   LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libSDL2.so
   OBJECT_DIR = CMakeFiles/render.dir

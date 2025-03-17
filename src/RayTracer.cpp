@@ -9,7 +9,7 @@ float4 RayTracer::get_ray_color(const Ray& ray) const
     float3 color = u_background_color;
 
     static struct Hit hit;
-    hit.t = MAX_DIST;
+    hit.t = Hittable::MAX_DIST;
 
 
     if(m_hit_list.hit(ray, hit)) {
@@ -33,13 +33,10 @@ void RayTracer::draw_frame()
             float3 pixel_center = m_pixel00 + i * m_camera_dx + j * m_camera_dy;
             Ray ray = {m_camera_pos, pixel_center - m_camera_pos};
 
-
-
             float4 color = get_ray_color(ray);
 
             unsigned pixel_idx = j * m_width + i;
             m_pixels[pixel_idx] = convert_color(color);
-
         }
     }
 

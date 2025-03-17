@@ -21,7 +21,12 @@ add_executable(render
     src/RayTracer.cpp
     src/Hittable.cpp
     lib/LiteMath/Image2d.cpp
-        src/Utils.h)
+        src/BVHTree.h
+        src/BVHTree.cpp
+        src/Triangle.cpp
+        src/Triangle.h
+        src/Box.cpp
+        src/Box.h)
 
 # Link the SDL2 library to the executable
 target_link_libraries(render ${SDL2_LIBRARIES})
