@@ -55,7 +55,6 @@ bool Box::hit(const Ray& ray, Hit& hit) const
 
     if((t_min <= t_max) && (t_max > 0.f) && t_min < hit.t) {
         hit.t = t_min;
-        hit.t_out = t_max;
         return true;
     }
     return false;

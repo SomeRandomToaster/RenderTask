@@ -15,6 +15,7 @@ bool Plane::hit(const Ray& ray, Hit& hit) const
         hit.normal = m_normal;
         hit.color = m_color;
         hit.t = t;
+        hit.is_mirror = m_is_mirror;
         return true;
     }
     return false;
@@ -38,6 +39,7 @@ bool Sphere::hit(const Ray &ray, Hit &hit) const
         hit.t = t;
         hit.normal = normalize(ray.at(hit.t) - m_center);
         hit.color = m_color;
+        hit.is_mirror = m_is_mirror;
         return true;
     }
     return false;

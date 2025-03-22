@@ -115,7 +115,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/leo/Apps/clion-2024.3.4/bin/cmake/linux/x64/bin/cmake"
+			"value" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/bin/cmake"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -127,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/leo/Apps/clion-2024.3.4/bin/cmake/linux/x64/bin/cpack"
+			"value" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/bin/cpack"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -139,7 +139,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/leo/Apps/clion-2024.3.4/bin/cmake/linux/x64/bin/ctest"
+			"value" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/bin/ctest"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
@@ -527,7 +527,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "/home/leo/Apps/clion-2024.3.4/bin/ninja/linux/x64/ninja"
+			"value" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/ninja/linux/x64/ninja"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -759,7 +759,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/leo/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30"
+			"value" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1014,6 +1014,18 @@
 			"value" : "FALSE"
 		},
 		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Vulkan",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding Vulkan"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[/usr/local/lib/libvulkan.so][/usr/local/include][cfound components: glslangValidator missing components: glslc][v1.4.309()]"
+		},
+		{
 			"name" : "SDL2_DIR",
 			"properties" : 
 			[
@@ -1062,6 +1074,70 @@
 			"value" : "/home/leo/Prog/Rendering/SdfTaskTemplate"
 		},
 		{
+			"name" : "Vulkan_GLSLANG_VALIDATOR_EXECUTABLE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/bin/glslangValidator"
+		},
+		{
+			"name" : "Vulkan_GLSLC_EXECUTABLE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "Vulkan_GLSLC_EXECUTABLE-NOTFOUND"
+		},
+		{
+			"name" : "Vulkan_INCLUDE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a file."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/local/include"
+		},
+		{
+			"name" : "Vulkan_LIBRARY",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/local/lib/libvulkan.so"
+		},
+		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
 			"properties" : 
 			[
@@ -1072,6 +1148,30 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "TRUE"
+		},
+		{
+			"name" : "openmp_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for openmp."
+				}
+			],
+			"type" : "PATH",
+			"value" : "openmp_DIR-NOTFOUND"
+		},
+		{
+			"name" : "tbb_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for tbb."
+				}
+			],
+			"type" : "PATH",
+			"value" : "tbb_DIR-NOTFOUND"
 		}
 	],
 	"kind" : "cache",

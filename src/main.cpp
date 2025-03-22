@@ -43,9 +43,9 @@ int main(int argc, char **args)
     constexpr float camera_rot_speed = 0.01;
     constexpr float camera_move_speed = 0.05;
     constexpr float light_move_speed = 0.1;
-    constexpr float light_trajectory_radius = 0.75;
-    constexpr float light_height = 1;
-    constexpr float light_intensity = 2;
+    constexpr float light_trajectory_radius = 0;
+    constexpr float light_height = 2;
+    constexpr float light_intensity = 3;
     const float3 light_color = {1, 0.85, 0.7};
     const float3 mesh_color = {1, 0.8, 0.9};
 
@@ -54,10 +54,11 @@ int main(int argc, char **args)
 
 
     auto plane = Plane(0, 1, 0, -1, {1, 1, 1});
+    auto sphere = Sphere({1.5, 0, 0}, 1, {1, 0, 0}, true);
 
-    SimpleMesh mesh = LoadMeshFromObj("res/spot.obj");
+    SimpleMesh mesh = LoadMeshFromObj("res/meshes/spot.obj");
 
-    HittableList hit_list( { &plane });
+    HittableList hit_list( { &plane, &sphere });
 
     std::vector<Triangle> mesh_tris;
     mesh_tris.reserve(mesh.TrianglesNum());

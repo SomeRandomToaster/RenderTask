@@ -1,20 +1,28 @@
 #include "RayTracer.h"
 
+#include <thread>
+
 using LiteMath::lerp;
 using LiteMath::min;
 using LiteMath::max;
 
-float4 RayTracer::get_ray_color(const Ray& ray) const
+float4 RayTracer::get_ray_color(const Ray& ray, size_t depth) const
 {
+    if (depth >= MAX_DEPTH) {
+        return { u_background_color.x, u_background_color.y, u_background_color.z, 1 };
+    }
     float3 color = u_background_color;
 
-    static struct Hit hit;
+    Hit hit;
     hit.t = Hittable::MAX_DIST;
+    hit.is_mirror = false;
 
-
-    if(m_hit_list.hit(ray, hit)) {
+    if (m_hit_list.hit(ray, hit)) {
+        if (hit.is_mirror)
+            return get_ray_color({ray.at(hit.t), LiteMath::reflect(ray.direction(), hit.normal)}, depth + 1 );
         color = shade_lambert(ray, hit);
     }
+
 
 
     return {color.x, color.y, color.z, 1.0};
@@ -25,39 +33,54 @@ void RayTracer::draw_frame()
 {
     //your rendering code goes here
 
-    for(int i = 0; i < m_width; i++) {
-        for(int j = 0; j < m_height; j++) {
 
+    for (int k = 0; k < THR_COUNT; k++) {
+        threads[k] = std::thread([this, k]() {
+            for(int i = 0; i < m_width; i++) {
+                for(int j = k * m_height / THR_COUNT; j < (k + 1) * m_height / THR_COUNT; j++) {
+                    float3 pixel_center = m_pixel00 + i * m_camera_dx + j * m_camera_dy;
 
+                    Ray ray = {m_camera_pos, pixel_center - m_camera_pos};
 
-            float3 pixel_center = m_pixel00 + i * m_camera_dx + j * m_camera_dy;
-            Ray ray = {m_camera_pos, pixel_center - m_camera_pos};
+                    float4 color = get_ray_color(ray, 0);
 
-            float4 color = get_ray_color(ray);
+                    unsigned pixel_idx = j * m_width + i;
 
-            unsigned pixel_idx = j * m_width + i;
-            m_pixels[pixel_idx] = convert_color(color);
-        }
+                    uint8_t r = uint8_t(color.x * 255.99);
+                    uint8_t g = uint8_t(color.y * 255.99);
+                    uint8_t b = uint8_t(color.z * 255.99);
+                    uint8_t a = uint8_t(color.w * 255.99);
+                    uint32_t color_uint = a << 24 | r << 16 | g << 8 | b;
+                    m_pixels[pixel_idx] = color_uint;
+                }
+            }
+        });
+    }
+
+    for (int i = 0; i < THR_COUNT; i++) {
+        threads[i].join();
     }
 
 }
 
 
-uint32_t RayTracer::convert_color(const float4& color) {
-    uint8_t r = uint8_t(color.x * 255);
-    uint8_t g = uint8_t(color.y * 255);
-    uint8_t b = uint8_t(color.z * 255);
-    uint8_t a = uint8_t(color.w * 255);
-    return a << 24 | r << 16 | g << 8 | b;
-}
-
-
 float3 RayTracer::shade_lambert(const Ray& ray, const Hit& hit) const
 {
-    float3 pos = ray.at(hit.t);
+    constexpr float ambient_factor = 0.1f;
+    constexpr float EPS = 1e-1;
+
+    float3 pos = ray.at(hit.t) + hit.normal * EPS;
     float3 to_light = u_light_pos - pos;
 
-    float ambient_factor = 0.2f;
+    Ray shadow_ray{ ray.at(hit.t - EPS), to_light };
+    Hit tmp;
+    tmp.t = Hittable::MAX_DIST;
+
+    if (m_hit_list.hit(shadow_ray, tmp)) {
+        return hit.color * ambient_factor;
+    }
+
+
     float diffuse_factor = max(dot(normalize(to_light), hit.normal), 0.0f) * min(u_light_intensity / dot(to_light, to_light), 1 - ambient_factor);
     return hit.color * u_light_color * diffuse_factor + hit.color * ambient_factor;
 
@@ -70,6 +93,16 @@ RayTracer::RayTracer(std::vector<uint32_t>& pixels, const HittableList& hit_list
 
     m_viewport_width = m_viewport_height * m_aspect_ratio;
     update_camera_coordinates();
+
+    m_hor_iter.resize(m_width);
+    for (int i = 0; i < m_width; i++) {
+        m_hor_iter[i] = i;
+    }
+
+    m_vert_iter.resize(m_width);
+    for (int i = 0; i < m_width; i++) {
+        m_vert_iter[i] = i;
+    }
 }
 
 
@@ -103,4 +136,14 @@ void RayTracer::set_camera_pivot(const float3& pivot)
 {
     m_camera_pivot = pivot;
     update_camera_coordinates();
+}
+
+float3 RayTracer::random_direction() {
+    using LiteMath::rnd;
+    return normalize({ rnd(-1, 1), rnd(-1, 1), rnd(-1, 1) });
+}
+
+float3 RayTracer::random_on_hemisphere(const float3& axis) {
+    float3 rand_dir = random_direction();
+    return dot(axis, rand_dir) < 0 ? -rand_dir : rand_dir;
 }

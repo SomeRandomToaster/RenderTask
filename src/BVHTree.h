@@ -11,7 +11,7 @@ class BVHTree : public Hittable
     Box m_box;
     std::vector<Triangle> m_tris;
     BVHTree* m_left = nullptr;
-    BVHTree* m_right;
+    BVHTree* m_right = nullptr;
     size_t m_count;
 
     std::pair<double, int> subdivide(const std::vector<Triangle>& tris);

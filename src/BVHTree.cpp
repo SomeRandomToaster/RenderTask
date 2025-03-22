@@ -1,6 +1,7 @@
 #include "BVHTree.h"
 
 #include <algorithm>
+#include <stack>
 
 BVHTree::BVHTree(const std::vector<Triangle>& tris)
     : m_box(tris), m_count(tris.size())
@@ -86,25 +87,33 @@ std::pair<double, int> BVHTree::subdivide(const std::vector<Triangle>& tris)
 bool BVHTree::hit(const Ray& ray, Hit& hit) const
 {
     bool ans = false;
-    Hit box_hit = hit;
-    bool hit_flag = m_box.hit(ray, box_hit);
+    std::stack<const BVHTree*> stack;
 
-    if (!hit_flag) {
+
+    Hit box_hit = hit;
+    if (!this->box().hit(ray, box_hit)) {
         return false;
     }
 
-    if (!m_tris.empty()) {
-        for (const Triangle& t : m_tris) {
-            ans = t.hit(ray, hit) || ans;
+    stack.push(this);
+
+    while (!stack.empty()) {
+        const BVHTree* cur_node = stack.top();
+        stack.pop();
+
+        Hit box_hit = hit;
+        if (cur_node->box().hit(ray, box_hit)) {
+            if (cur_node->m_left) {
+                stack.push(cur_node->m_left);
+                stack.push(cur_node->m_right);
+            } else {
+                for (const Triangle& t : cur_node->m_tris) {
+                    ans = t.hit(ray, hit) || ans;
+                }
+            }
         }
-        return ans;
     }
-
-    Hit left_hit, right_hit;
-    left_hit.t = right_hit.t = Hittable::MAX_DIST;
-
-    ans = m_left->hit(ray, hit) || ans;
-    ans = m_right->hit(ray, hit) || ans;
 
     return ans;
 }
+

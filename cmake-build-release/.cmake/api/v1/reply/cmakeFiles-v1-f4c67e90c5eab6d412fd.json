@@ -1,0 +1,115 @@
+{
+	"inputs" : 
+	[
+		{
+			"path" : "CMakeLists.txt"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "cmake-build-release/CMakeFiles/3.30.5/CMakeSystem.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "cmake-build-release/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/UnixPaths.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/usr/lib/x86_64-linux-gnu/cmake/SDL2/sdl2-config-version.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/usr/lib/x86_64-linux-gnu/cmake/SDL2/sdl2-config.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/media/leo/bb1a22d7-c0c8-44e6-b80a-8de50e703f5a/Apps/clion-2024.3.4/bin/cmake/linux/x64/share/cmake-3.30/Modules/FeatureSummary.cmake"
+		}
+	],
+	"kind" : "cmakeFiles",
+	"paths" : 
+	{
+		"build" : "/home/leo/Prog/Rendering/SdfTaskTemplate/cmake-build-release",
+		"source" : "/home/leo/Prog/Rendering/SdfTaskTemplate"
+	},
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 1
+	}
+}

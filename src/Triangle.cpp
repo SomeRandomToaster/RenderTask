@@ -13,7 +13,8 @@ bool Triangle::hit(const Ray& ray, Hit& hit) const
     if (tuv_coords.x < hit.t && tuv_coords.y >= 0 && tuv_coords.z >= 0 && t1 >= 0) {
         hit.t = tuv_coords.x;
         hit.color = m_color;
-        hit.normal = tuv_coords.y * m_normal_a + tuv_coords.z * m_normal_a + t1 * m_normal_c;
+        hit.is_mirror = m_is_mirror;
+        hit.normal = (tuv_coords.y * m_normal_a + tuv_coords.z * m_normal_a + t1 * m_normal_c);
         return true;
     }
     return false;
